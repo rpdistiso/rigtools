@@ -322,11 +322,11 @@ function updateExtensionStatus(extlist_element) {
         }
         ordlist.push(e);
 
-        const icon = e.icons.find((ic) => ic.size === 128) ?? e.icons.at(-1);
+        const icon = e.icons?.find((ic) => ic.size === 128) ?? e.icons?.at(-1);
 
-        let card = createExtensionCard(e.name, e.id, e.enabled, icon.url);
+        let card = createExtensionCard(e.name, e.id, e.enabled, icon?.url || ""); // add default image here
         
-        let cardInput = card.querySelector("input")
+        let cardInput = card.querySelector("input");
 
         cardInput.addEventListener("change", (event) => {
           chrome.management.setEnabled(e.id, event.target.checked);
